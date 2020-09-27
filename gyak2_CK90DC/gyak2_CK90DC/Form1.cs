@@ -16,16 +16,13 @@ namespace gyak2_CK90DC
         BindingList<User> users = new BindingList<User>();
         public Form1()
         {
-            listBox1.DataSource = users;
-            listBox1.ValueMember = "ID";
-            listBox1.DisplayMember = "FullName";
-
             InitializeComponent();
+            listUsers.DataSource = users;
+            listUsers.ValueMember = "ID";
+            listUsers.DisplayMember = "FullName";
             label1.Text = Resource1.FullName;
             button1.Text = Resource1.Add;
             button2.Text = Resource1.Write;
-
-            InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)

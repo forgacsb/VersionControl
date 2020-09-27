@@ -21,9 +21,10 @@ namespace gyak2_CK90DC
             listBox1.DisplayMember = "FullName";
 
             InitializeComponent();
-            label1.Text = Resource1.LastName;
-            label2.Text = Resource1.FirstName; 
-            button1.Text = Resource1.Add; 
+            label1.Text = Resource1.FullName;
+            button1.Text = Resource1.Add;
+            button2.Text = Resource1.Write;
+
             InitializeComponent();
         }
 
@@ -31,8 +32,7 @@ namespace gyak2_CK90DC
         {
             var u = new User()
             {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text
+                FullName = textBox1.Text,
             };
             users.Add(u);
         }

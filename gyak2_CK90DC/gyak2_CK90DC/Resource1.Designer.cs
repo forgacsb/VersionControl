@@ -70,7 +70,7 @@ namespace gyak2_CK90DC {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Teljes név.
+        ///   Looks up a localized string similar to Teljesnév.
         /// </summary>
         internal static string FullName {
             get {

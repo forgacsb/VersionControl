@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,5 +66,23 @@ namespace gyak5_CK90DC
             }
             return value;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(saveFileDialog1.FileName);
+
+                writer.Write("Időszak ");
+                writer.Write("Nyereség");
+                writer.WriteLine("");
+
+
+                writer.Close();
+            }
+        }
+
     }
+    
 }

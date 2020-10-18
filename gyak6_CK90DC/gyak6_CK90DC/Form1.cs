@@ -43,8 +43,7 @@ namespace gyak6_CK90DC
 
             foreach (XmlElement element in xml.DocumentElement)
             {
-                if (childElement == null)
-                    continue;
+               
             }
 
         }

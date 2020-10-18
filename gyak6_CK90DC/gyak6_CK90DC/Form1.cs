@@ -1,4 +1,5 @@
-﻿using gyak6_CK90DC.MNBServiceReference;
+﻿using gyak6_CK90DC.Entities;
+using gyak6_CK90DC.MNBServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,13 +12,18 @@ using System.Windows.Forms;
 
 namespace gyak6_CK90DC
 {
+    
     public partial class Form1 : Form
     {
+        BindingList<RateData> Rates = new BindingList<RateData>();
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.DataSource = Rates;
             arfolyam();
         }
+
+        
         public void arfolyam()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();

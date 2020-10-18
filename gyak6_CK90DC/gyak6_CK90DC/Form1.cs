@@ -21,10 +21,7 @@ namespace gyak6_CK90DC
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.DataSource = Rates;
-            
-            Xml(arfolyam());
-            diagram();
+            RefreshData();
         }
 
         
@@ -35,8 +32,8 @@ namespace gyak6_CK90DC
             var request = new GetExchangeRatesRequestBody()
             {
                 currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                startDate = dateTimePicker1.Value.ToString(),
+                endDate = dateTimePicker2.Value.ToString()
             };
 
             var response = mnbService.GetExchangeRates(request);
@@ -90,6 +87,30 @@ namespace gyak6_CK90DC
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
+        }
+
+        public void RefreshData()
+        {
+
+            Rates.Clear();
+            Xml(arfolyam());
+            diagram();
+            dataGridView1.DataSource = Rates;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
     

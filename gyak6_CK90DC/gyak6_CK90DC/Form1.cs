@@ -38,14 +38,6 @@ namespace gyak6_CK90DC
 
             var result = response.GetCurrenciesResult;
 
-            var xml = new XmlDocument();
-            xml.LoadXml(result);
-
-            foreach (XmlElement element in xml.DocumentElement)
-            {
-               
-            }
-
         }
         
         public string arfolyam()
@@ -115,7 +107,6 @@ namespace gyak6_CK90DC
         public void RefreshData()
         {
             dataGridView1.DataSource = Rates;
-            comboBox1.DataSource = Currencies;
             Rates.Clear();
             Xml(arfolyam());
             diagram();

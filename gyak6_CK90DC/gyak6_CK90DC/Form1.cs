@@ -18,12 +18,35 @@ namespace gyak6_CK90DC
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
+            GetCurrencies();
             RefreshData();
         }
 
+        public void GetCurrencies()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+
+            var request = new GetCurrenciesRequestBody
+            {
+            };
+
+            var response = mnbService.GetCurrencies(request);
+
+            var result = response.GetCurrenciesResult;
+
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+
+            }
+
+        }
         
         public string arfolyam()
         {
@@ -91,11 +114,12 @@ namespace gyak6_CK90DC
 
         public void RefreshData()
         {
-
+            dataGridView1.DataSource = Rates;
+            comboBox1.DataSource = Currencies;
             Rates.Clear();
             Xml(arfolyam());
             diagram();
-            dataGridView1.DataSource = Rates;
+            
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

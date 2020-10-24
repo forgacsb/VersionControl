@@ -21,7 +21,6 @@ namespace gyak7_CK90DC
         public Form1()
         {
             InitializeComponent();
-            Simulation();
         }
 
         public List<Person> GetPopulation(string csvpath)
@@ -102,8 +101,10 @@ namespace gyak7_CK90DC
                              select x.ProbabilityOfDeadth).FirstOrDefault();
             // Meghal a személy?
             if (rng.NextDouble() <= pDeath)
+            {
                 person.IsAlive = false;
-
+                return;
+            }
             //Születés kezelése - csak az élő nők szülnek
             if (person.IsAlive && person.Gender == Gender.Female)
             {
@@ -124,7 +125,9 @@ namespace gyak7_CK90DC
         }
     public void Simulation()
         {
-            Population = GetPopulation(@"C:\temp\nép-teszt.csv");
+            chart1.Series["Nő"].Points.Clear();
+            chart1.Series["Férfi"].Points.Clear();
+            Population = GetPopulation(@"C:\temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\temp\halál.csv");
 
@@ -141,8 +144,10 @@ namespace gyak7_CK90DC
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
+
                 chart1.Series["Nő"].Points.AddXY(year, nbrOfFemales);
                 chart1.Series["Férfi"].Points.AddXY(year, nbrOfMales);
+                
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }

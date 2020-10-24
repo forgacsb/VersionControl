@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace gyak7_CK90DC.Entities
 {
-    class DeathProbability
+    public class DeathProbability
     {
-        public int BirthYear { get; set; }
+        public int Year { get; set; }
         public Gender Gender { get; set; }
-        public double ProbabilityOfDead { get; set; }
+        public double ProbabilityOfDeadth { get; set; }
     }
 }

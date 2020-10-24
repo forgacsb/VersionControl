@@ -21,7 +21,7 @@ namespace gyak7_CK90DC
         public Form1()
         {
             InitializeComponent();
-            Population= GetPopulation(@"C:\temp\nép.csv");
+            Population= GetPopulation(@"C:\temp\nép-teszt.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\temp\halál.csv");
             DataGridView datadataGridView1 = new DataGridView();

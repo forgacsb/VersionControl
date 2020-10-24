@@ -21,28 +21,7 @@ namespace gyak7_CK90DC
         public Form1()
         {
             InitializeComponent();
-            Population= GetPopulation(@"C:\temp\nép-teszt.csv");
-            BirthProbabilities = GetBirthProbabilities(@"C:\temp\születés.csv");
-            DeathProbabilities = GetDeathProbabilities(@"C:\temp\halál.csv");
-            DataGridView datadataGridView1 = new DataGridView();
-            dataGridView1.DataSource = Population;
-
-            for (int year = 2005; year <= 2024; year++)
-            {
-                for (int i = 0; i < Population.Count; i++)
-                {
-                    // Ide jön a szimulációs lépés
-                }
-
-                int nbrOfMales = (from x in Population
-                                  where x.Gender == Gender.Male && x.IsAlive
-                                  select x).Count();
-                int nbrOfFemales = (from x in Population
-                                    where x.Gender == Gender.Female && x.IsAlive
-                                    select x).Count();
-                Console.WriteLine(
-                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
-            }
+            Simulation();
         }
 
         public List<Person> GetPopulation(string csvpath)
@@ -143,6 +122,40 @@ namespace gyak7_CK90DC
                 }
             }
         }
-    
+    public void Simulation()
+        {
+            Population = GetPopulation(@"C:\temp\nép-teszt.csv");
+            BirthProbabilities = GetBirthProbabilities(@"C:\temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\temp\halál.csv");
+
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
+            {
+                for (int i = 0; i < Population.Count; i++)
+                {
+                    SimStep(year, Population[i]);
+                }
+
+                int nbrOfMales = (from x in Population
+                                  where x.Gender == Gender.Male && x.IsAlive
+                                  select x).Count();
+                int nbrOfFemales = (from x in Population
+                                    where x.Gender == Gender.Female && x.IsAlive
+                                    select x).Count();
+                chart1.Series["Nő"].Points.AddXY(year, nbrOfFemales);
+                chart1.Series["Férfi"].Points.AddXY(year, nbrOfMales);
+                Console.WriteLine(
+                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Simulation();
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace gyak8_CK90DC
         {
             Factory = new BallFactory
             {
-                BallColor = button2.BackColor
+                BallColor = button3.BackColor
             };
         }
 

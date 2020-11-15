@@ -24,7 +24,7 @@ namespace gyak8_CK90DC.Abstractions
         }
         protected abstract void DrawImage(Graphics g);
 
-        public virtual void MoveBall()
+        public virtual void MoveToy()
         {
             Left += 1;
         }

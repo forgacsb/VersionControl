@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gyak8_CK90DC.Abstractions
 {
-    interface IToyFactory
+     public interface IToyFactory
     {
         Toy CreateNew();
     }

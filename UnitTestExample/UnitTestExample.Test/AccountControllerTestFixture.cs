@@ -14,7 +14,8 @@ public class AccountControllerTestFixture
          TestCase("abcd1234", false),
          TestCase("irf@uni-corvinus", false),
          TestCase("irf.uni-corvinus.hu", false),
-         TestCase("irf@uni-corvinus.hu", true)
+         TestCase("irf@uni-corvinus.hu", true),
+         
         ]
         public void TestValidateEmail(string email, bool expectedResult)
         {
@@ -23,6 +24,24 @@ public class AccountControllerTestFixture
 
             // Act
             var actualResult = accountController.ValidateEmail(email);
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        
+        [Test,
+         TestCase("aBcDeFgH", false),
+         TestCase("ABCDEFGH123", false),
+         TestCase("abcdefgh123", false),
+         TestCase("abcde", false),
+         TestCase("AbcdefgH123", true)]
+        public void TestValidatePassword(string password, bool expectedResult)
+        {
+            // Arrange
+            var accountController = new AccountController();
+
+            // Act
+            var actualResult = accountController.ValidateEmail(password);
 
             // Assert
             Assert.AreEqual(expectedResult, actualResult);

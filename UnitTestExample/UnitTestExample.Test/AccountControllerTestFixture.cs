@@ -34,14 +34,14 @@ public class AccountControllerTestFixture
          TestCase("ABCDEFGH123", false),
          TestCase("abcdefgh123", false),
          TestCase("abcde", false),
-         TestCase("AbcdefgH123", true)]
+         TestCase("Abcd1234", true)]
         public void TestValidatePassword(string password, bool expectedResult)
         {
             // Arrange
             var accountController = new AccountController();
 
             // Act
-            var actualResult = accountController.ValidateEmail(password);
+            var actualResult = accountController.ValidatePassword(password);
 
             // Assert
             Assert.AreEqual(expectedResult, actualResult);

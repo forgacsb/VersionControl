@@ -15,7 +15,7 @@ namespace gyak10_ck90dc
     {
         GameController gc = new GameController();
         GameArea ga;
-        int populationSize = 100;
+        int populationSize = 1000;
         int nbrOfSteps = 10;
         int nbrOfStepsIncrement = 10;
         int generation = 1;
@@ -54,6 +54,7 @@ namespace gyak10_ck90dc
             {
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
+                button1.Visible = true;
                 return;
             }
 
@@ -73,6 +74,15 @@ namespace gyak10_ck90dc
             }
             gc.Start();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
